@@ -1,0 +1,5 @@
+<ul>
+{% for issue in issues %}
+    <li><a href="{{ url_for('issue', key=issue.key) }}">{{ issue.key }}</a></li>
+{% endfor %}
+</ul>
