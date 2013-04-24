@@ -28,3 +28,8 @@ def index():
 def issue(key):
     issue = jc.issue(key)
     return render_template('ticketview.html', issue=issue)
+
+
+@app.route('/issue/new')
+def newissue():
+    return render_template('newticket.html')

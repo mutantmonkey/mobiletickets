@@ -55,14 +55,14 @@
  		<div class="navbar navbar-fixed-top navbar-inverse hidden-phone">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="index.html">
+					<a class="brand" href="{{ url_for('index') }}">
 						JIRA Mobile Web
 					</a>
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li><a href="index.html">My Issues</a></li>
+							<li><a href="{{ url_for('index') }}">My Issues</a></li>
 							<li><a href="progress.html">In Progress</a></li>
-							<li><a href="newticket.html">New Ticket</a></li>
+							<li><a href="{{ url_for('newissue') }}">New Ticket</a></li>
 							<li><a href="search.html">Issue Search</a></li>
 							<li><a href="projects.html">Projects</a></li>
 							<li><a href="contact.html">Contact</a></li>
