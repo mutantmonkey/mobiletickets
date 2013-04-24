@@ -27,4 +27,4 @@ def index():
 @app.route('/issue/<string:key>')
 def issue(key):
     issue = jc.issue(key)
-    return render_template('issue.html', issue=issue)
+    return render_template('ticketview.html', issue=issue)
