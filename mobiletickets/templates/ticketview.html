@@ -9,14 +9,14 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="home">
-					<h2>Ticket 10:</h2> 
+					<h2>Ticket 10: {{ issue.summary }}</h2> 
 					<dl>
 						<dt>Description: </dt>
-						<dd>Aruba AP-105 wireless access point (WAP) has gone bad; replace Portal: 234CA110B. Circuit: 107885 </dd><br>
+						<dd>{{ issue.description }}</dd><br>
 						<dt>Work Order: </dt>
 						<dd>132418</dd>
 						<dt>Customer: </dt>
-						<dd></dd>
+						<dd>{{ issue.reporter.displayName }} ({{ issue.reporter.name }})</dd>
 						<dt>Contact Information: </dt>
 						<dd></dd>
 						<dt>Building: </dt>
@@ -26,7 +26,7 @@
 						<dt>Priority: </dt>
 						<dd>High</dd>
 						<dt>Due date: </dt>
-						<dd>06/Mar/13</dd>
+						<dd>{{ issue.duedate }}</dd>
 						<dt>Location of Customer: </dt>
 						<dd></dd>
 						<dt>Old Tickets: </dt>
@@ -35,7 +35,7 @@
 				<div class="tab-pane fade" id="edit">
 				<form id="tab2">
 						<label>Description</label>
-						<input type="text" value="Aruba AP-105 wireless access point (WAP) has gone bad; replace Portal: 234CA110B. Circuit: 107885 " class="input-xlarge">
+						<input type="text" value="{{ issue.description }}" class="input-xlarge">
 						<label>Customer</label>
 						<input type="text" value="" class="input-xlarge">
 						<label>Contact Information</label>
@@ -116,9 +116,9 @@
   	  <div class="tab-pane fade" id="history">
 				<dl>
 					<dt>User:</dt>
-					<dd>Kimberley Homer</dd>
+					<dd>{{ issue.reporter.displayName }} ({{ issue.reporter.name }})</dd>
 					<dt>Timestamp</dt>
-					<dd>05/Mar/13 11:40</dd>
+					<dd>{{ issue.updated }}</dd>
 				</dl>
 			</div>
 		</div>
