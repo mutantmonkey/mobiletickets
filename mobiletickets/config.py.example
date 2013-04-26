@@ -1,0 +1,3 @@
+DEBUG = False
+SECRET_KEY = ''
+JIRA_API = "https://jira.cns.vt.edu/rest"

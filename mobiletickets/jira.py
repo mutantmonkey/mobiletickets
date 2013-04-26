@@ -33,7 +33,7 @@ class JiraClient(object):
         return json.loads(r.text)
 
     def issue(self, key):
-        data = self.get('issue/' + key)
+        data = self.get('api/latest/issue/' + key)
         return Issue(data)
 
 

@@ -9,8 +9,9 @@ jc = jira.JiraClient(app.config['SESSION_ID'])
 
 @app.route('/')
 def index():
-    result = jc.post('search', {
-        'jql': "project = MT",
+    user = jc.get('auth/latest/session')
+    result = jc.post('api/latest/search', {
+        'jql': "assignee = {user}".format(user=user['name']),
         'startAt': 0,
         'maxResults': 15,
         })
