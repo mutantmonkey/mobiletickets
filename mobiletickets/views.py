@@ -25,15 +25,33 @@ def index():
     return render_template('index.html', issues=issues)
 
 
+@app.route('/progress')
+def progress():
+    return render_template('progress.html')
+
+
 @app.route('/issue/<string:key>')
 def issue(key):
-    issue = jc.issue(key)
+    try:
+        issue = jc.issue(key)
+    except (KeyError, ValueError):
+        abort(404)
     return render_template('ticketview.html', issue=issue)
 
 
 @app.route('/issue/new')
 def newissue():
     return render_template('newticket.html')
+
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+
+@app.route('/search')
+def search():
+    return render_template('search.html')
 
 
 @app.route('/contact')
