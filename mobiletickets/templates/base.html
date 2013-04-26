@@ -53,46 +53,18 @@
 
 	<body>
 
-		<!-- Desktop Navbar -->
-		<div class="navbar navbar-fixed-top navbar-inverse hidden-phone">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="brand" href="{{ url_for('index') }}">
-						JIRA Mobile Web
-					</a>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li{% if section == "index" %} class="active"{% endif %}><a href="{{ url_for('index') }}">My Issues</a></li>
-							<li{% if section == "progress" %} class="active"{% endif %}><a href="{{ url_for('progress') }}">In Progress</a></li>
-							<li{% if section == "newissue" %} class="active"{% endif %}><a href="{{ url_for('newissue') }}">New Ticket</a></li>
-							<li{% if section == "search" %} class="active"{% endif %}><a href="{{ url_for('search') }}">Issue Search</a></li>
-							<li{% if section == "projects" %} class="active"{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
-							<li{% if section == "contact" %} class="active"{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
-						</ul>
-					</div><!--/.nav-collapse -->
-					<div class="nav-login">
-						<div class="moduletable">
-							<div class="custom">
-								<p><input type="button" class="btn btn-primary" id="login-logout" value="Login" onClick='disable_enable(this)' ></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<!-- Mobile Navbar -->
-		<div class="navbar navbar-fixed-top navbar-inverse visible-phone">
+		<div class="navbar navbar-fixed-top navbar-inverse">
 			<div class="navbar-inner">
-				<a class="brand" href="{{ url_for('index') }}">
-					JIRA Mobile Web
-				</a>
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
+				    <a class="brand" href="{{ url_for('index') }}">
+					    JIRA Mobile Web
+				    </a>
 					<div class="nav-login">
 						<div class="moduletable">
 							<div class="custom">
@@ -100,51 +72,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="nav-collapse">
+					<div class="nav-collapse collapse">
 						<ul class="nav">
 							<li{% if section == "index" %} class="active"{% endif %}><a href="{{ url_for('index') }}">My Issues</a></li>
 							<li{% if section == "progress" %} class="active"{% endif %}><a href="{{ url_for('progress') }}">In Progress</a></li>
 							<li{% if section == "newissue" %} class="active"{% endif %}><a href="{{ url_for('newissue') }}">New Ticket</a></li>
-							<li{% if section == "search" %} class="active"{% endif %}><a href="{{ url_for('search') }}">Issue Search</a></li>
-							<li{% if section == "projects" %} class="active"{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
-							<li{% if section == "contact" %} class="active"{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
-						</ul>
-					</div><!--/.nav-collapse -->
-					<div class="nav-login">
-						<div class="moduletable">
-							<div class="custom">
-								<p><input type="button" class="btn btn-primary" id="login-logout" value="Login" onClick='disable_enable(this)' ></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<!-- Mobile Navbar -->
-		<div class="navbar navbar-fixed-top navbar-inverse visible-phone">
-			<div class="navbar-inner">
-				<a class="brand" href="{{ url_for('index') }}">
-					JIRA Mobile Web
-				</a>
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<div class="nav-login">
-						<div class="moduletable">
-							<div class="custom">
-								<p><input type="button" class="btn btn-primary" id="m-login-logout" value="Login" onClick='disable_enable(this)' ></p>
-							</div>
-						</div>
-					</div>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li{% if section == "index" %} class="active"{% endif %}><a href="{{ url_for('index') }}">My Issues</a></li>
-							<li{% if section == "progress" %} class="active"{% endif %}><a href="{{ url_for('progress') }}">In Progress</a></li>
-							<li{% if section == "newissue" %} class="active"{% endif %}><a href="{{ url_for('newissue') }}">New Ticket</a></li>
 							<li{% if section == "search" %} class="active"{% endif %}><a href="{{ url_for('search') }}">Issue Search</a></li>
 							<li{% if section == "projects" %} class="active"{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
 							<li{% if section == "contact" %} class="active"{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
