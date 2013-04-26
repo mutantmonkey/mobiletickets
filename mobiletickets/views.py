@@ -33,3 +33,8 @@ def issue(key):
 @app.route('/issue/new')
 def newissue():
     return render_template('newticket.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
