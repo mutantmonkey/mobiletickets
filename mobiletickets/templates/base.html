@@ -77,8 +77,6 @@
 							<li{% if section == "index" %} class="active"{% endif %}><a href="{{ url_for('index') }}">My Issues</a></li>
 							<li{% if section == "progress" %} class="active"{% endif %}><a href="{{ url_for('progress') }}">In Progress</a></li>
 							<li{% if section == "newissue" %} class="active"{% endif %}><a href="{{ url_for('newissue') }}">New Ticket</a></li>
-
-							<li{% if section == "search" %} class="active"{% endif %}><a href="{{ url_for('search') }}">Issue Search</a></li>
 							<li{% if section == "projects" %} class="active"{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
 							<li{% if section == "contact" %} class="active"{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
 						</ul>

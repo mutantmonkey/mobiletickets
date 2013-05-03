@@ -1,2 +1,13 @@
 {% extends "base.html" %}
 {% set section="progress" %}
+
+{% block content %}
+			<h2> In-progress Tickets </h2>
+			{% for issue in issues %}
+			<dl><h3><p>
+				<dt><a href="{{ url_for('issue', key=issue.key) }}">{{ issue.key }}</a> <span class="label label-success">Active</span></dt></h3>
+				<h4><dd>{{ issue.summary }}</dd></h4>
+			</p></dl>
+			{% endfor %}
+{% endblock %}
+

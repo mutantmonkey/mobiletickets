@@ -1,0 +1,6 @@
+Ticket progress looks to be based of some report code.
+	Not sure about using the if conditionals in python/flask
+
+OAuth with VT?
+
+Pushing requests to JIRA for tickets

@@ -9,12 +9,12 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="home">
-					<h2>Ticket 10: {{ issue.summary }}</h2> 
+					<h2>{{ issue.project }} <br>: {{ issue.summary }}</h2> 
 					<dl>
 						<dt>Description: </dt>
 						<dd>{{ issue.description }}</dd><br>
 						<dt>Work Order: </dt>
-						<dd>132418</dd>
+						<dd> {{ issue.id }} </dd>
 						<dt>Customer: </dt>
 						<dd>{{ issue.reporter.displayName }} ({{ issue.reporter.name }})</dd>
 						<dt>Contact Information: </dt>
