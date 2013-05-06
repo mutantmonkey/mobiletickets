@@ -4,8 +4,12 @@ from mobiletickets import app
 from mobiletickets import jira
 
 
-# TODO: remove this and replace it with real login
-jc = jira.JiraClient(app.config['SESSION_ID'])
+jc = jira.JiraClient()
+
+@app.before_request
+def set_session():
+    if 'JSESSIONID' in session:
+        jc.set_session(session['JSESSIONID'])
 
 
 @app.route('/')
@@ -94,7 +98,6 @@ def issue(key):
         abort(404)
 
     transitions = jc.get('api/latest/issue/{key}/transitions'.format(key=key))
-    print(transitions)
 
     #if request.method == 'POST':
     #    jc.post('
@@ -119,7 +122,6 @@ def newissue():
                 'description': request.form['description'],
             },
         })
-        print(request.form)
 
     return render_template('newticket.html', user=user)
 
@@ -211,4 +213,45 @@ def search_results(query, start=0):
 
 @app.route('/contact')
 def contact():
+    user = jc.get('auth/latest/session')
     return render_template('contact.html', user=user)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    user = jc.get('auth/latest/session')
+    if 'name' in user:
+        return redirect(url_for('index'))
+
+    error = ""
+
+    if request.method == 'POST':
+        result = jc.post('auth/latest/session', {
+            'username': request.form['username'],
+            'password': request.form['password'],
+        })
+        if 'session' in result:
+            session['JSESSIONID'] = result['session']['value']
+            return redirect(url_for('index'))
+        else:
+            error = result['errorMessages'][0]
+
+    return render_template('login.html', user={}, error=error)
+
+
+@app.route('/login/<string:session_id>')
+def login_sessid(session_id):
+    session['JSESSIONID'] = session_id
+    return redirect(url_for('index'))
+
+
+@app.route('/logout')
+def logout():
+    jc.delete('auth/latest/session')
+    session.pop('JSESSIONID', none)
+    return render_template('logout.html', user={})
+
+
+@app.errorhandler(401)
+def error401(error):
+    return redirect(url_for('login'))
