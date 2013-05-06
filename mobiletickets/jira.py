@@ -17,6 +17,9 @@ class JiraClient(object):
         if session_id:
             self.session.cookies.update({'JSESSIONID': session_id})
 
+    def set_session(self, session_id):
+        self.session.cookies.update({'JSESSIONID': session_id})
+
     def get(self, path, data=None):
         if data:
             data = json.dumps(data)
@@ -24,13 +27,17 @@ class JiraClient(object):
         r = self.session.get(app.config['JIRA_API'] + '/' + path, data=data)
         return json.loads(r.text)
 
-
     def post(self, path, data=None):
         if data:
             data = json.dumps(data)
 
         r = self.session.post(app.config['JIRA_API'] + '/' + path, data=data)
         return json.loads(r.text)
+
+    def delete(self, path):
+        r = self.session.delete(app.config['JIRA_API'] + '/' + path)
+        return True
+        #return json.loads(r.text)
 
     def issue(self, key):
         data = self.get('api/latest/issue/' + key)

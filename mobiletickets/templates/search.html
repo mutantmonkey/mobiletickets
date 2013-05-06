@@ -1,2 +1,10 @@
 {% extends "base.html" %}
 {% set section="search" %}
+{% block content %}
+<h2>Search</h2>
+
+<form action="{{ url_for('search') }}" method="post" class="form-search">
+    <input type="text" name="q" value="" class="input-xlarge" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+{% endblock %}

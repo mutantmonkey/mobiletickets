@@ -68,7 +68,15 @@
 					<div class="nav-login">
 						<div class="moduletable">
 							<div class="custom">
-								<p><input type="button" class="btn btn-primary" id="m-login-logout" value="Login" onClick='disable_enable(this)' ></p>
+							    {% if user and user.name %}
+							    <p class="navbar-text">
+							    Logged in as {{ user.name }}
+							    <a href="{{ url_for('logout') }}" title="Logout"><i class="icon-off icon-white"></i></a>
+							    </p>
+							    {% else %}
+								<p class="navbar-text">
+								<a href="{{ url_for('login') }}" class="btn btn-primary">Login <i class="icon-off icon-white"></i></a>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -76,7 +84,8 @@
 						<ul class="nav">
 							<li{% if section == "index" %} class="active"{% endif %}><a href="{{ url_for('index') }}">My Issues</a></li>
 							<li{% if section == "progress" %} class="active"{% endif %}><a href="{{ url_for('progress') }}">In Progress</a></li>
-							<li{% if section == "newissue" %} class="active"{% endif %}><a href="{{ url_for('newissue') }}">New Ticket</a></li>
+				            <li{% if section == "search" %} class="active"{% endif %}><a href="{{ url_for('search') }}">Search</a></li>
+							<!--li{% if section == "newissue" %} class="active"{% endif %}><a href="{{ url_for('newissue') }}">New Ticket</a></li-->
 							<li{% if section == "projects" %} class="active"{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
 							<li{% if section == "contact" %} class="active"{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
 						</ul>

@@ -17,123 +17,43 @@
 		<div class="well">
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#home" data-toggle="tab">Ticket View</a></li>
-				<li><a href="#edit" data-toggle="tab">Edit Ticket</a></li>
+				<!--li><a href="#edit" data-toggle="tab">Edit Ticket</a></li-->
 				<li><a href="#history" data-toggle="tab">History</a></li>
 				<p class="pull-right"><a href="#resolve" class="btn"><i class="icon-ok-sign"></i> <strong>Resolve</strong></a></p>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="home">
-					<h2>{{ issue.project }} <br>: {{ issue.summary }}</h2> 
+					<h2>{{ issue.key }}: {{ issue.summary }}</h2> 
 					<dl>
 						<dt>Description: </dt>
 						<dd>{{ issue.description }}</dd><br>
-						<dt>Work Order: </dt>
-						<dd> {{ issue.id }} </dd>
-						<dt>Customer: </dt>
+						<dt>Reporter: </dt>
 						<dd>{{ issue.reporter.displayName }} ({{ issue.reporter.name }})</dd>
-						<dt>Contact Information: </dt>
-						<dd></dd>
-						<dt>Building: </dt>
-						<dd>Newman Library</dd>
-						<dt>Room: </dt>
-						<dd>2000 R</dd>
-						<dt>Priority: </dt>
-						<dd>High</dd>
 						<dt>Due date: </dt>
 						<dd>{{ issue.duedate }}</dd>
-						<dt>Location of Customer: </dt>
-						<dd></dd>
-						<dt>Old Tickets: </dt>
-						<dd></dd>
 				</div>
 				<div class="tab-pane fade" id="edit">
 				<form id="tab2">
-						<label>Description</label>
-						<input type="text" value="{{ issue.description }}" class="input-xlarge">
-						<label>Customer</label>
-						<input type="text" value="" class="input-xlarge">
-						<label>Contact Information</label>
-						<input type="text" value="Smith" class="input-xlarge">
-						<label>Building</label>
-						<input type="text" value="Newman Library" class="input-xlarge">
-						<label>Room</label>
-						<input type="text" value="2000 R" class="input-xlarge">
-						<label>Priority</label>
-						<select name="DropDownPriority" id="DropDownPriority" class="input-xlarge">
-							<option value="low">Low</option>
-							<option value="med">Medium</option>
-							<option selected="selected" value="high">High</option>
-						</select>
-						<label>Due Date</label>
-						<form>
-							<fieldset>
-								<div class="controls controls-row">
-									<select name="DropDownDate" id="DropDownDate" class="span1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option selected="selected" value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-										<option value="21">21</option>
-										<option value="22">22</option>
-										<option value="23">23</option>
-										<option value="24">24</option>
-										<option value="25">25</option>
-										<option value="26">26</option>
-										<option value="27">27</option>
-										<option value="28">28</option>
-										<option value="29">29</option>
-										<option value="30">30</option>
-										<option value="31">31</option>
-									</select>
-									<select name="DropDownMonth" id="DropDownMonth" class="span1">
-										<option value="jan">January</option>
-										<option value="feb">February</option>
-										<option selected="selected" value="mar">March</option>
-										<option value="apr">April</option>
-										<option value="may">May</option>
-										<option value="june">June</option>
-										<option value="july">July</option>
-										<option value="aug">August</option>
-										<option value="sep">September</option>
-										<option value="oct">October</option>
-										<option value="nov">November</option>
-										<option value="dec">December</option>
-									</select>
-									<input type="text" value="2013" class="input-small">
-								</div>
-							</fieldset>
-						</form>
-					<label>Location of Customer</label>
-					<textarea value="" rows="3" class="input-xlarge">
-					</textarea>
+					    <label>Description</label>
+                        <textarea name="description" rows="5" class="input-xlarge">{{ issue.description }}</textarea>
 					<div>
 						<button class="btn btn-primary">Update</button>
 					</div>
 				</form>
 	  	</div>
-  	  <div class="tab-pane fade" id="history">
+  	    <div class="tab-pane fade" id="history">
+  	            {% if issue.worklog %}
+  	            {% for item in issue.worklog.value %}
 				<dl>
 					<dt>User:</dt>
-					<dd>{{ issue.reporter.displayName }} ({{ issue.reporter.name }})</dd>
+					<dd>{{ item.author.displayName }}</dd>
 					<dt>Timestamp</dt>
-					<dd>{{ issue.updated }}</dd>
+					<dd>{{ item.started }}</dd>
 				</dl>
+			    {% endfor %}
+			    {% else %}
+			    Work log is empty
+			    {% endif %}
 			</div>
 		</div>
 {% endblock %}
