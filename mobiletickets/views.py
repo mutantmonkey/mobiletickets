@@ -57,7 +57,7 @@ def progress(start=0):
         abort(401)
 
     result = jc.post('api/latest/search', {
-        'jql': "assignee = {user}".format(user=user['name']),
+        'jql': 'status = "In Progress"',
         'startAt': start,
         'maxResults': app.config['ISSUES_PER_PAGE'],
     })
