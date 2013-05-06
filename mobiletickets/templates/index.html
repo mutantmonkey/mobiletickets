@@ -8,4 +8,11 @@
 				<h4><dd>{{ issue.summary }}</dd></h4>
 			</p></dl>
 			{% endfor %}
+
+{% if start_prev >= 0 %}
+<a href="{{ url_for('project', key=project.key, start=start_prev) }}" class="btn">Previous</a>
+{% endif %}
+{% if start_next >= 0 %}
+<a href="{{ url_for('project', key=project.key, start=start_next) }}" class="btn pull-right">Next</a>
+{% endif %}
 {% endblock %}

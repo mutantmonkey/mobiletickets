@@ -1,3 +1,4 @@
 DEBUG = False
 SECRET_KEY = ''
+ISSUES_PER_PAGE = 15
 JIRA_API = "https://jira.cns.vt.edu/rest"

@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% set section="projects" %}
 {% block content %}
-                        <h2> My Projects </h2>
-                        {% for project in projects %}
-                        <dl><h3><p>
-                                <dt>{{ project.name }} </dt></h3>
-                                <h4><dd>{{ project.description }}</dd></h4>
-                        </p></dl>
-                        {% endfor %}
+<h2>My Projects</h2>
+<ul>
+    {% for project in projects %}
+    <li><a href="{{ url_for('project', key=project.key) }}">{{ project.name }}</a></li>
+    {% endfor %}
 {% endblock %}
