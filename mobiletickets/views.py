@@ -195,7 +195,7 @@ def search_results(query, start=0):
         abort(401)
 
     result = jc.post('api/latest/search', {
-        'jql': query,
+        'jql': 'summary ~ "{query}" OR description ~ "{query}"'.format(query=query),
         'startAt': start,
         'maxResults': app.config['ISSUES_PER_PAGE'],
     })
