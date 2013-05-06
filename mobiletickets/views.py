@@ -98,12 +98,47 @@ def issue(key):
         abort(404)
 
     transitions = jc.get('api/latest/issue/{key}/transitions'.format(key=key))
-
-    #if request.method == 'POST':
-    #    jc.post('
+    show_resolve = False
+    for k, t in transitions.items():
+        if t['name'] == "Resolve Issue":
+            show_resolve = True
+            break
 
     return render_template('ticketview.html', user=user, issue=issue,
-            transitions=transitions)
+            show_resolve=show_resolve)
+
+
+@app.route('/issue/<string:key>/resolve', methods=['POST'])
+def resolve_issue(key):
+    user = jc.get('auth/latest/session')
+    if 'status-code' in user and user['status-code'] == 401:
+        abort(401)
+
+    try:
+        issue = jc.issue(key)
+    except (KeyError, ValueError):
+        abort(404)
+
+    transitions = jc.get('api/latest/issue/{key}/transitions'.format(key=key))
+    transid = 0
+    for k, t in transitions.items():
+        if t['name'] == "Resolve Issue":
+            transid = k
+            break
+
+    if transid <= 0:
+        abort(403)
+
+    data = {
+        'transition': transid,
+        'fields': {},
+    }
+
+    if 'comment' in request.form:
+        data['comment'] = request.form['comment']
+    jc.post('api/latest/issue/{key}/transitions'.format(key=key), data)
+
+    return redirect(url_for('issue', key=key))
 
 
 @app.route('/issue/new', methods=['GET', 'POST'])

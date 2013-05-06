@@ -32,12 +32,19 @@ class JiraClient(object):
             data = json.dumps(data)
 
         r = self.session.post(app.config['JIRA_API'] + '/' + path, data=data)
-        return json.loads(r.text)
+
+        try:
+            return json.loads(r.text)
+        except ValueError:
+            pass
 
     def delete(self, path):
         r = self.session.delete(app.config['JIRA_API'] + '/' + path)
-        return True
-        #return json.loads(r.text)
+
+        try:
+            return json.loads(r.text)
+        except ValueError:
+            pass
 
     def issue(self, key):
         data = self.get('api/latest/issue/' + key)
