@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% set section="index" %}
 {% block content %}
-			<h2> My assigned Tickets </h2>
+			<h2> My Assigned Tickets </h2>
 			{% for issue in issues %}
 			<dl><h3><p>
 				<dt><a href="{{ url_for('issue', key=issue.key) }}">{{ issue.key }}</a> <span class="label label-success">Active</span></dt></h3>
