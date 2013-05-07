@@ -283,7 +283,8 @@ def login_sessid(session_id):
 @app.route('/logout')
 def logout():
     jc.delete('auth/latest/session')
-    session.pop('JSESSIONID', none)
+    if 'JSESSIOID' in session:
+        session.pop('JSESSIONID', none)
     return render_template('logout.html', user={})
 
 
