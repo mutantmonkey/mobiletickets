@@ -1,7 +1,6 @@
 import config
 import re
 from flask import Flask, Request
-from flask.ext.sqlalchemy import SQLAlchemy
 from jinja2 import evalcontextfilter, Markup, escape
 
 app = Flask(__name__)
